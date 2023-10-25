@@ -180,3 +180,22 @@ If the verification checks succeed, the final score of a method on a given insta
 Finally, scores will be averaged over all the instances in the testset via the shifted geometric mean, with a shift of 10 (the lower the better).
 
 As for testsets, all submissions will be initially run on the MIPLIB 2017 instances listed in the file `first_round.test`. Then, potential winners will be run on the full MIPLIB 2017 benchmark set.
+
+## FAQ
+
+Q: Can I implement my reduction on top of [Papilo](https://github.com/scipopt/papilo/)?
+
+In general, implementing the reduction on top of a presolving framework (closed or open-source) is forbidden by the competition rules, for the following reasons:
+1. it would make it difficult to evaluate whether the improvement comes from just running presolve twice (once in the reduction, and once by SCIP itself in the final run) or with different parameters, or from the new reduction itself;
+2. it would bias the competition towards participants that are already familiar with a presolving framework.
+
+However, we understand that using a framework could provide some convenience features and speed up development.
+So, after some discussion with the Papilo maintainers, we agreed that participants are allowed to use Papilo provided that:
+1. all other reductions are disabled;
+2. parallel execution is disabled.
+
+You can use the dedicated branch [Papilo/MIPCOMP24](https://github.com/scipopt/papilo/tree/MIPCOMP24) or, if you prefer to do those changes manually:
+* Disable all presolvers by starting with an empty function `addDefaultPresolvers()` in `Presolve.hpp`
+* Use only the sequential mode of PaPILO by using the parameter setting: `presolve.threads = 1`
+* Disable linearly dependent equations by parameter setting: `presolve.detectlindep = 0`
+
