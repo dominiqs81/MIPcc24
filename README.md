@@ -75,7 +75,7 @@ In case participants have any doubts about the implementation of specific rules,
 ### Registration
 
 * All participants must register with the full list of team members by sending an e-mail [here](mailto:dominiqs@gmail.com) by November 30th, 2023.
-* After this deadline, all teams will receive access to a server for testing installation of their software.
+* On January 15th 2024, all teams will receive access to a server for testing installation of their software.
 * Teams of multiple participants must nominate a single contact person to handle the submission of report and code.
 
 ### Report
