@@ -70,7 +70,9 @@ if model.getStatus() == 'infeasible':
     scores["PDI"] = float(totaltime_line.split()[3])
 else:
     pdi_line = list(filter(lambda l: "primal-dual" in l, stats_lines))[0]
-    scores["PDI"] = float(pdi_line.split()[2])
+    # SCIP computes the primal-dual integral with a gap in [0,100]
+    # and not in [0,1] as we would expect...hence we have to divide by 100!
+    scores["PDI"] = float(pdi_line.split()[2]) / 100.0
 
 scores["TotalScore"] = scores["PresolveTime"] + scores["PDI"]
 
