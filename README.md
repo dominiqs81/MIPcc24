@@ -86,7 +86,8 @@ The report must include the following information:
 
 * A description of the methods developed and implemented, including any necessary citations to the literature and software used.
 * Computational results on the competition testset.
-* For each instance in the testset, the results should include at least the following metrics: `presolved size` and `time`.
+* Results should include at least the metrics `presolved size` and `time` in aggregated form over the competition testset.
+* Detailed tables (if really needed) can be put in appendix and do not count toward the 10 pages limit.
 * Further analysis of the computational results is welcome.
 
 If the computational work was performed by students only, the participants should include a letter of attestation indicating this.
@@ -176,6 +177,7 @@ After the code has run, a verification step will be performed, checking that:
 * the primal and dual bounds computed by SCIP on the presolved instance are compatible with the best known bounds on the instance. Note that this implies that, in the reduction, scaling the objective or arbitrarily changing the objective offset is not allowed.
 
 If the verification checks succeed, the final score of a method on a given instance will be given by T plus the PDI measure reported by SCIP in step 2. In case of invalid bounds/solution, the score will be set to 3600.
+Note that SCIP uses a primal-dual gap in the range [0,100], while the scoring logic above assumes a primal-dual gap in [0,1]. So the PDI reported by SCIP is divided by 100 before adding it to the presolve time. 
 
 Finally, scores will be averaged over all the instances in the testset via the shifted geometric mean, with a shift of 10 (the lower the better).
 
